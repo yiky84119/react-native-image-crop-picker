@@ -599,8 +599,8 @@ RCT_EXPORT_METHOD(openCropper:(NSDictionary *)options
                                  if([[self.options objectForKey:@"includeExif"] boolValue]) {
                                      exif = [[CIImage imageWithData:imageData] properties];
                                  }
-
-                                 [selections addObject:[self createAttachmentResponse:filePath
+                                 NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+                                 [selections addObject:[self createAttachmentResponse: [fileUrl absoluteString]
                                                                              withExif: exif
                                                                         withSourceURL:[sourceURL absoluteString]
                                                                   withLocalIdentifier: phAsset.localIdentifier
