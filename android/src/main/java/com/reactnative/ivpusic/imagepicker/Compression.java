@@ -54,7 +54,8 @@ class Compression {
         File image = new File(originalImagePath); 
 
         String[] paths = image.getName().split("\\.(?=[^\\.]+$)");
-        String compressedFileName = paths[0] + "-compressed";
+        String safePath = paths[0].replaceAll("[\\u4e00-\\u9fa5]", "");
+        String compressedFileName = safePath + "-compressed";
         
         if(paths.length > 1)
             compressedFileName += "." + paths[1];
